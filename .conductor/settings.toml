@@ -2,6 +2,6 @@
 
 [scripts]
 setup = "true"
-run = "ruby -run -e httpd . -p ${CONDUCTOR_PORT:-4173}"
+run = 'PORT=${CONDUCTOR_PORT:-4173}; echo "http://localhost:$PORT"; ruby -run -e httpd . -p "$PORT"'
 archive = "true"
 run_mode = "concurrent"
