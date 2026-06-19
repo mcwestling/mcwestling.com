@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="McWestling is a family product company."
+    >
+    <meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#171716" media="(prefers-color-scheme: dark)">
+    <title>McWestling</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    >
+    <style>
+      :root {
+        --ground: #8f8372;
+        --ground-link: #51493e;
+        --ink: #17130f;
+        --paper: #f7f2e8;
+        --horizon: 50vh;
+        --logo-size: clamp(21rem, 30vw, 30rem);
+        --logo-ground-depth: clamp(5rem, 10vw, 9rem);
+        --logo-top: calc(
+          var(--horizon) + var(--logo-ground-depth) - var(--logo-size)
+        );
+        --wordmark-size: clamp(4.75rem, 13vw, 9.75rem);
+        --wordmark-line-height: 0.82;
+        --wordmark-overlap: clamp(0.4rem, 1.2vw, 1.1rem);
+        --wordmark-safe-top: clamp(0.75rem, 2vh, 1.5rem);
+        --wordmark-top: max(
+          var(--wordmark-safe-top),
+          calc(
+            var(--logo-top) -
+              (var(--wordmark-size) * var(--wordmark-line-height)) +
+              var(--wordmark-overlap)
+          )
+        );
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        min-height: 100%;
+        background: linear-gradient(
+          to bottom,
+          var(--paper) 0,
+          var(--paper) var(--horizon),
+          var(--ground) var(--horizon),
+          var(--ground) 100%
+        );
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        color: var(--ink);
+        font-family: Georgia, "Times New Roman", serif;
+      }
+
+      main {
+        position: relative;
+        min-height: 100vh;
+        overflow: hidden;
+        padding-inline: clamp(1.25rem, 4vw, 4rem);
+        text-align: center;
+      }
+
+      .brand {
+        position: absolute;
+        inset-inline: 0;
+        top: var(--wordmark-top);
+        z-index: 1;
+        display: grid;
+        justify-items: center;
+        padding-inline: inherit;
+      }
+
+      h1 {
+        margin: 0;
+        padding-inline: 0.08em;
+        font-family: "Instrument Serif", Didot, "Bodoni 72",
+          "Times New Roman", serif;
+        font-size: var(--wordmark-size);
+        font-style: italic;
+        font-weight: 400;
+        letter-spacing: -3.5px;
+        line-height: var(--wordmark-line-height);
+        user-select: none;
+      }
+
+      .wordmark-westling {
+        display: inline-block;
+        margin-left: -0.06em;
+      }
+
+      .logo {
+        position: absolute;
+        top: var(--logo-top);
+        left: 50%;
+        z-index: 2;
+        display: block;
+        width: var(--logo-size);
+        max-width: min(86vw, 35rem);
+        height: auto;
+        transform: translateX(-50%);
+        filter: drop-shadow(0 1.25rem 1.7rem rgb(43 35 26 / 24%));
+      }
+
+      .contact {
+        position: absolute;
+        inset-inline: 0;
+        bottom: clamp(1.5rem, 6vh, 3.75rem);
+        display: grid;
+        justify-items: center;
+        padding-inline: inherit;
+      }
+
+      .links {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.35rem;
+        max-width: 42rem;
+        color: var(--ground-link);
+        font-family: "Instrument Serif", Didot, "Bodoni 72",
+          "Times New Roman", serif;
+        font-size: clamp(1.15rem, 2.2vw, 1.55rem);
+        font-weight: 400;
+        line-height: 1.2;
+      }
+
+      a {
+        color: inherit;
+        text-decoration-thickness: 0.04em;
+        text-underline-offset: 0.16em;
+      }
+
+      a:hover,
+      a:focus-visible {
+        color: var(--ink);
+      }
+
+      a:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 0.2em;
+      }
+
+      @media (max-width: 42rem) {
+        :root {
+          --logo-size: clamp(19rem, 78vw, 28rem);
+          --logo-ground-depth: clamp(3.75rem, 10vw, 6rem);
+          --wordmark-overlap: clamp(0.2rem, 1.5vw, 0.6rem);
+        }
+
+        .contact {
+          bottom: clamp(1.5rem, 5vh, 3rem);
+        }
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --ground: #292821;
+          --ground-link: #a99f8e;
+          --ink: #eee6d6;
+          --paper: #171716;
+        }
+
+        .logo {
+          filter: drop-shadow(0 1.25rem 1.9rem rgb(0 0 0 / 45%))
+            saturate(0.88) brightness(0.86);
+        }
+      }
+
+      @media (max-height: 44rem) {
+        :root {
+          --logo-size: clamp(12rem, 58vh, 19rem);
+          --logo-ground-depth: clamp(4.5rem, 18vh, 7rem);
+          --wordmark-size: clamp(3rem, 11vh, 5rem);
+          --wordmark-overlap: clamp(1rem, 4vh, 2.25rem);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main aria-label="McWestling landing page">
+      <section class="masthead" aria-label="McWestling">
+        <div class="brand">
+          <h1 aria-label="McWestling">
+            <span aria-hidden="true">Mc</span><span
+              class="wordmark-westling"
+              aria-hidden="true"
+            >Westling</span>
+          </h1>
+        </div>
+        <img
+          class="logo"
+          src="assets/mcwestling-logo.png"
+          alt="McWestling castle logo"
+          width="1024"
+          height="1024"
+        >
+      </section>
+      <section class="contact" aria-label="Contact links">
+        <nav class="links" aria-label="McWestling links">
+          <a href="mailto:inquiries@mcwestling.com">inquiries@mcwestling.com</a>
+          <a href="https://github.com/mcwestling">GitHub</a>
+        </nav>
+      </section>
+    </main>
+  </body>
+</html>
