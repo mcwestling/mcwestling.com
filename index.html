@@ -21,192 +21,8 @@
       href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap"
       rel="stylesheet"
     >
-    <style>
-      :root {
-        --ground: #8f8372;
-        --ground-link: #51493e;
-        --ink: #17130f;
-        --paper: #f7f2e8;
-        --horizon: 50vh;
-        --logo-size: clamp(21rem, 30vw, 30rem);
-        --logo-ground-depth: clamp(5rem, 10vw, 9rem);
-        --logo-top: calc(
-          var(--horizon) + var(--logo-ground-depth) - var(--logo-size)
-        );
-        --wordmark-size: clamp(4.75rem, 13vw, 9.75rem);
-        --wordmark-line-height: 0.82;
-        --wordmark-overlap: clamp(0.4rem, 1.2vw, 1.1rem);
-        --wordmark-safe-top: clamp(0.75rem, 2vh, 1.5rem);
-        --wordmark-top: max(
-          var(--wordmark-safe-top),
-          calc(
-            var(--logo-top) -
-              (var(--wordmark-size) * var(--wordmark-line-height)) +
-              var(--wordmark-overlap)
-          )
-        );
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      html {
-        min-height: 100%;
-        background: linear-gradient(
-          to bottom,
-          var(--paper) 0,
-          var(--paper) var(--horizon),
-          var(--ground) var(--horizon),
-          var(--ground) 100%
-        );
-      }
-
-      body {
-        min-height: 100vh;
-        margin: 0;
-        color: var(--ink);
-        font-family: Georgia, "Times New Roman", serif;
-      }
-
-      main {
-        position: relative;
-        min-height: 100vh;
-        overflow: hidden;
-        padding-inline: clamp(1.25rem, 4vw, 4rem);
-        text-align: center;
-      }
-
-      .brand {
-        position: absolute;
-        inset-inline: 0;
-        top: var(--wordmark-top);
-        z-index: 1;
-        display: grid;
-        justify-items: center;
-        padding-inline: inherit;
-      }
-
-      h1 {
-        margin: 0;
-        padding-inline: 0.08em;
-        font-family: "Instrument Serif", Didot, "Bodoni 72",
-          "Times New Roman", serif;
-        font-size: var(--wordmark-size);
-        font-style: italic;
-        font-weight: 400;
-        letter-spacing: -3.5px;
-        line-height: var(--wordmark-line-height);
-        user-select: none;
-      }
-
-      .wordmark-westling {
-        display: inline-block;
-        margin-left: -0.06em;
-      }
-
-      .logo {
-        position: absolute;
-        top: var(--logo-top);
-        left: 50%;
-        z-index: 2;
-        display: block;
-        width: var(--logo-size);
-        max-width: min(86vw, 35rem);
-        height: auto;
-        transform: translateX(-50%);
-        filter: drop-shadow(0 1.25rem 1.7rem rgb(43 35 26 / 24%));
-      }
-
-      .contact {
-        position: absolute;
-        inset-inline: 0;
-        bottom: clamp(1.5rem, 6vh, 3.75rem);
-        display: grid;
-        justify-items: center;
-        padding-inline: inherit;
-      }
-
-      .links {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 0.35rem;
-        max-width: 42rem;
-        color: var(--ground-link);
-        font-family: "Instrument Serif", Didot, "Bodoni 72",
-          "Times New Roman", serif;
-        font-size: clamp(1.15rem, 2.2vw, 1.55rem);
-        font-weight: 400;
-        line-height: 1.2;
-      }
-
-      a {
-        color: inherit;
-        text-decoration-thickness: 0.04em;
-        text-underline-offset: 0.16em;
-      }
-
-      a:hover,
-      a:focus-visible {
-        color: var(--ink);
-      }
-
-      a:focus-visible {
-        outline: 2px solid currentColor;
-        outline-offset: 0.2em;
-      }
-
-      @media (max-width: 42rem) {
-        :root {
-          --logo-size: clamp(19rem, 78vw, 28rem);
-          --logo-ground-depth: clamp(3.75rem, 10vw, 6rem);
-          --wordmark-overlap: clamp(0.2rem, 1.5vw, 0.6rem);
-        }
-
-        .contact {
-          bottom: clamp(1.5rem, 5vh, 3rem);
-        }
-      }
-
-      @media (prefers-color-scheme: dark) {
-        :root {
-          --ground: #292821;
-          --ground-link: #a99f8e;
-          --ink: #eee6d6;
-          --paper: #171716;
-        }
-
-        .logo {
-          filter: drop-shadow(0 1.25rem 1.9rem rgb(0 0 0 / 45%))
-            saturate(0.88) brightness(0.86);
-        }
-      }
-
-      @media (max-height: 44rem) {
-        :root {
-          --logo-size: clamp(12rem, 58vh, 19rem);
-          --logo-ground-depth: clamp(4.5rem, 18vh, 7rem);
-          --wordmark-size: clamp(3rem, 11vh, 5rem);
-          --wordmark-overlap: clamp(1rem, 4vh, 2.25rem);
-        }
-      }
-    </style>
-    <script>
-      !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="Rn Ln init Gn Jn Si Zn Yn Vn capture calculateEventProperties ns register register_once register_for_session unregister unregister_for_session ls getFeatureFlag getFeatureFlagPayload getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync us identify setPersonProperties unsetPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset setIdentity clearIdentity get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException addExceptionStep captureLog startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty ss ts createPersonProfile setInternalOrTestUser os Un ds opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing Xn debug Ii mr getPageViewId captureTraceFeedback captureTraceMetric jn".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-    posthog.init('phc_qxQXK6XSDxqaFjsVHpA8CKUuHQbku69fwNsBMeLQ4xBH', {
-      api_host: 'https://u.mcwestling.com',
-      ui_host: 'https://us.posthog.com',
-      defaults: '2026-05-30',
-      capture_pageview: true,
-      capture_pageleave: true,
-      disable_session_recording: true,
-      autocapture: {
-        dom_event_allowlist: ['click'],
-        element_allowlist: ['a'],
-      },
-    })
-    </script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
   </head>
   <body>
     <main aria-label="McWestling landing page">
@@ -219,13 +35,22 @@
             >Westling</span>
           </h1>
         </div>
+        <div class="castle-window-fill" aria-hidden="true">
+          <span class="window-left-top"></span>
+          <span class="window-left-bottom"></span>
+          <span class="window-center-left"></span>
+          <span class="window-center-right"></span>
+          <span class="window-right-top"></span>
+          <span class="window-right-bottom"></span>
+        </div>
         <img
           class="logo"
-          src="assets/mcwestling-logo.png"
+          src="assets/mcwestling-logo-window-cutouts.png"
           alt="McWestling castle logo"
           width="1024"
           height="1024"
         >
+        <div class="gigi-stage" aria-hidden="true"></div>
       </section>
       <section class="contact" aria-label="Contact links">
         <nav class="links" aria-label="McWestling links">
