@@ -81,20 +81,25 @@ h1 {
   margin-left: -0.06em;
 }
 
-.logo,
+.logo-wrap,
 .castle-window-fill {
   position: absolute;
   top: var(--logo-top);
   left: 50%;
   width: var(--logo-size);
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateZ(0);
+}
+
+.logo-wrap {
+  z-index: 3;
+  -webkit-filter: drop-shadow(0 1.25rem 1.7rem rgb(43 35 26 / 24%));
+  filter: drop-shadow(0 1.25rem 1.7rem rgb(43 35 26 / 24%));
 }
 
 .logo {
-  z-index: 3;
   display: block;
+  width: 100%;
   height: auto;
-  filter: drop-shadow(0 1.25rem 1.7rem rgb(43 35 26 / 24%));
 }
 
 .castle-window-fill {
@@ -167,9 +172,16 @@ h1 {
 .gigi-ground {
   z-index: 4;
   width: var(--gigi-width);
-  height: auto;
+  transform: translateZ(0);
   transform-origin: 50% 100%;
+  -webkit-filter: drop-shadow(0 0.45rem 0.35rem rgb(43 35 26 / 22%));
   filter: drop-shadow(0 0.45rem 0.35rem rgb(43 35 26 / 22%));
+}
+
+.gigi-ground img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .gigi-window {
@@ -182,17 +194,22 @@ h1 {
   );
 }
 
-.gigi-window img {
+.gigi-window-figure {
   position: absolute;
   top: 65%;
   left: 30%;
+  transform: translate(-50%, -50%) translateZ(0);
+  -webkit-filter: brightness(1.16) contrast(1.05) saturate(1.08)
+    drop-shadow(0 0 0.22rem rgb(255 232 186 / 68%));
+  filter: brightness(1.16) contrast(1.05) saturate(1.08)
+    drop-shadow(0 0 0.22rem rgb(255 232 186 / 68%));
+}
+
+.gigi-window-figure img {
   display: block;
   width: 160%;
   max-width: none;
   height: auto;
-  filter: brightness(1.16) contrast(1.05) saturate(1.08)
-    drop-shadow(0 0 0.22rem rgb(255 232 186 / 68%));
-  transform: translate(-50%, -50%);
   user-select: none;
   -webkit-user-drag: none;
 }
@@ -208,13 +225,17 @@ h1 {
   z-index: 0;
 }
 
-.gigi-walk-track img {
+.gigi-walk-figure {
+  transform: scaleX(var(--gigi-facing)) translateZ(0);
+  transform-origin: 50% 100%;
+  -webkit-filter: drop-shadow(0 0.28rem 0.2rem rgb(43 35 26 / 18%));
+  filter: drop-shadow(0 0.28rem 0.2rem rgb(43 35 26 / 18%));
+}
+
+.gigi-walk-figure img {
   display: block;
   width: 100%;
   height: auto;
-  transform: scaleX(var(--gigi-facing));
-  transform-origin: 50% 100%;
-  filter: drop-shadow(0 0.28rem 0.2rem rgb(43 35 26 / 18%));
   user-select: none;
   -webkit-user-drag: none;
 }
@@ -289,7 +310,9 @@ a:focus-visible {
     --paper: #171716;
   }
 
-  .logo {
+  .logo-wrap {
+    -webkit-filter: drop-shadow(0 1.25rem 1.9rem rgb(0 0 0 / 45%))
+      saturate(0.88) brightness(0.86);
     filter: drop-shadow(0 1.25rem 1.9rem rgb(0 0 0 / 45%))
       saturate(0.88) brightness(0.86);
   }
@@ -303,7 +326,9 @@ a:focus-visible {
     );
   }
 
-  .gigi-window img {
+  .gigi-window-figure {
+    -webkit-filter: brightness(1.35) contrast(1.06) saturate(1.12)
+      drop-shadow(0 0 0.28rem rgb(255 236 190 / 82%));
     filter: brightness(1.35) contrast(1.06) saturate(1.12)
       drop-shadow(0 0 0.28rem rgb(255 236 190 / 82%));
   }

@@ -297,11 +297,14 @@ posthog.capture('$pageview', window.__gigiPostHogProperties);
     if (state.type === "face") {
       cameo = document.createElement("div");
       cameo.className = "gigi-cameo gigi-window";
+      const figure = document.createElement("div");
+      figure.className = "gigi-window-figure";
       const image = document.createElement("img");
       image.src = assets.face.src;
       image.alt = "";
       image.decoding = "async";
-      cameo.append(image);
+      figure.append(image);
+      cameo.append(figure);
     } else if (state.type === "walk") {
       cameo = document.createElement("div");
       cameo.className = "gigi-cameo gigi-walk-track";
@@ -313,17 +316,22 @@ posthog.capture('$pageview', window.__gigiPostHogProperties);
         cameo.remove();
         cameo = null;
       });
+      const figure = document.createElement("div");
+      figure.className = "gigi-walk-figure";
       const image = document.createElement("img");
       image.src = assets.walk.src;
       image.alt = "";
       image.decoding = "async";
-      cameo.append(image);
+      figure.append(image);
+      cameo.append(figure);
     } else {
-      cameo = document.createElement("img");
+      cameo = document.createElement("div");
       cameo.className = "gigi-cameo gigi-ground";
-      cameo.src = assets[state.type].src;
-      cameo.alt = "";
-      cameo.decoding = "async";
+      const image = document.createElement("img");
+      image.src = assets[state.type].src;
+      image.alt = "";
+      image.decoding = "async";
+      cameo.append(image);
     }
 
     stage.append(cameo);
