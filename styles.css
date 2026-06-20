@@ -198,10 +198,14 @@ h1 {
 }
 
 .gigi-walk-track {
-  z-index: 2;
+  z-index: 4;
   width: var(--gigi-width);
   animation: gigi-walk var(--gigi-duration) linear both;
   animation-delay: var(--gigi-delay);
+}
+
+.gigi-walk-track.gigi-walk-behind {
+  z-index: 0;
 }
 
 .gigi-walk-track img {

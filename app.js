@@ -29,10 +29,7 @@
     walkDirection: Math.random() < 0.5 ? -1 : 1,
     walkLayer: Math.random() < 0.5 ? "back" : "front",
     walkDepth: Math.random(),
-    walkProgress:
-      Math.random() < 0.5
-        ? lerp(0.14, 0.28, Math.random())
-        : lerp(0.72, 0.86, Math.random()),
+    walkProgress: 0,
   };
   const iterationId = state.type === "face"
     ? `face:slot-${state.windowSlot}`
@@ -272,7 +269,8 @@ posthog.capture('$pageview', window.__gigiPostHogProperties);
     cameo.style.left = "0";
     const overlapsCastle =
       top < logoRect.bottom && top + height > logoRect.top;
-    cameo.style.zIndex = overlapsCastle ? "2" : "4";
+    const walkBehindCastle = overlapsCastle && !isInFront;
+    cameo.classList.toggle("gigi-walk-behind", walkBehindCastle);
   };
 
   const positionCameo = () => {
