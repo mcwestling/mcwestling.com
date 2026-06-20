@@ -1,0 +1,315 @@
+:root {
+  --ground: #8f8372;
+  --ground-link: #51493e;
+  --ink: #17130f;
+  --paper: #f7f2e8;
+  --horizon: 50vh;
+  --logo-size: min(clamp(21rem, 30vw, 30rem), 86vw, 35rem);
+  --logo-ground-depth: clamp(5rem, 10vw, 9rem);
+  --logo-top: calc(
+    var(--horizon) + var(--logo-ground-depth) - var(--logo-size)
+  );
+  --wordmark-size: clamp(4.75rem, 13vw, 9.75rem);
+  --wordmark-line-height: 0.82;
+  --wordmark-overlap: clamp(0.4rem, 1.2vw, 1.1rem);
+  --wordmark-safe-top: clamp(0.75rem, 2vh, 1.5rem);
+  --wordmark-top: max(
+    var(--wordmark-safe-top),
+    calc(
+      var(--logo-top) -
+        (var(--wordmark-size) * var(--wordmark-line-height)) +
+        var(--wordmark-overlap)
+    )
+  );
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: linear-gradient(
+    to bottom,
+    var(--paper) 0,
+    var(--paper) var(--horizon),
+    var(--ground) var(--horizon),
+    var(--ground) 100%
+  );
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+main {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  padding-inline: clamp(1.25rem, 4vw, 4rem);
+  text-align: center;
+}
+
+.brand {
+  position: absolute;
+  inset-inline: 0;
+  top: var(--wordmark-top);
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  padding-inline: inherit;
+}
+
+h1 {
+  margin: 0;
+  padding-inline: 0.08em;
+  font-family: "Instrument Serif", Didot, "Bodoni 72",
+    "Times New Roman", serif;
+  font-size: var(--wordmark-size);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -3.5px;
+  line-height: var(--wordmark-line-height);
+  user-select: none;
+}
+
+.wordmark-westling {
+  display: inline-block;
+  margin-left: -0.06em;
+}
+
+.logo,
+.castle-window-fill {
+  position: absolute;
+  top: var(--logo-top);
+  left: 50%;
+  width: var(--logo-size);
+  transform: translateX(-50%);
+}
+
+.logo {
+  z-index: 3;
+  display: block;
+  height: auto;
+  filter: drop-shadow(0 1.25rem 1.7rem rgb(43 35 26 / 24%));
+}
+
+.castle-window-fill {
+  z-index: 1;
+  aspect-ratio: 1;
+}
+
+.castle-window-fill span {
+  position: absolute;
+  background: #050505;
+  border-radius: 47% 47% 9% 9% / 45% 45% 7% 7%;
+}
+
+.castle-window-fill .window-left-top {
+  top: 39.7%;
+  left: 13.9%;
+  width: 4.3%;
+  height: 11.9%;
+}
+
+.castle-window-fill .window-left-bottom {
+  top: 65%;
+  left: 13.9%;
+  width: 4.3%;
+  height: 10%;
+}
+
+.castle-window-fill .window-center-left {
+  top: 42.2%;
+  left: 43%;
+  width: 4.4%;
+  height: 10.3%;
+}
+
+.castle-window-fill .window-center-right {
+  top: 42.2%;
+  left: 53.5%;
+  width: 4.4%;
+  height: 10.3%;
+}
+
+.castle-window-fill .window-right-top {
+  top: 39.7%;
+  left: 82.2%;
+  width: 4.3%;
+  height: 11.9%;
+}
+
+.castle-window-fill .window-right-bottom {
+  top: 65%;
+  left: 82.2%;
+  width: 4.3%;
+  height: 10%;
+}
+
+.gigi-stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.gigi-cameo {
+  position: absolute;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.gigi-ground {
+  z-index: 4;
+  width: var(--gigi-width);
+  height: auto;
+  transform-origin: 50% 100%;
+  filter: drop-shadow(0 0.45rem 0.35rem rgb(43 35 26 / 22%));
+}
+
+.gigi-window {
+  z-index: 2;
+  background: radial-gradient(
+    circle at 50% 56%,
+    rgb(255 239 200 / 58%),
+    rgb(255 214 135 / 24%) 38%,
+    transparent 72%
+  );
+}
+
+.gigi-window img {
+  position: absolute;
+  top: 65%;
+  left: 30%;
+  display: block;
+  width: 160%;
+  max-width: none;
+  height: auto;
+  filter: brightness(1.16) contrast(1.05) saturate(1.08)
+    drop-shadow(0 0 0.22rem rgb(255 232 186 / 68%));
+  transform: translate(-50%, -50%);
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.gigi-walk-track {
+  z-index: 2;
+  width: var(--gigi-width);
+  animation: gigi-walk var(--gigi-duration) linear infinite;
+  animation-delay: var(--gigi-delay);
+}
+
+.gigi-walk-track img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform: scaleX(var(--gigi-facing));
+  transform-origin: 50% 100%;
+  filter: drop-shadow(0 0.28rem 0.2rem rgb(43 35 26 / 18%));
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+@keyframes gigi-walk {
+  from {
+    transform: translateX(var(--gigi-start));
+  }
+
+  to {
+    transform: translateX(var(--gigi-end));
+  }
+}
+
+.contact {
+  position: absolute;
+  inset-inline: 0;
+  bottom: clamp(1.5rem, 6vh, 3.75rem);
+  z-index: 5;
+  display: grid;
+  justify-items: center;
+  padding-inline: inherit;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.35rem;
+  max-width: 42rem;
+  color: var(--ground-link);
+  font-family: "Instrument Serif", Didot, "Bodoni 72",
+    "Times New Roman", serif;
+  font-size: clamp(1.15rem, 2.2vw, 1.55rem);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 0.04em;
+  text-underline-offset: 0.16em;
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--ink);
+}
+
+a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 0.2em;
+}
+
+@media (max-width: 42rem) {
+  :root {
+    --logo-size: min(clamp(19rem, 78vw, 28rem), 86vw);
+    --logo-ground-depth: clamp(3.75rem, 10vw, 6rem);
+    --wordmark-overlap: clamp(0.2rem, 1.5vw, 0.6rem);
+  }
+
+  .contact {
+    bottom: clamp(1.5rem, 5vh, 3rem);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ground: #292821;
+    --ground-link: #a99f8e;
+    --ink: #eee6d6;
+    --paper: #171716;
+  }
+
+  .logo {
+    filter: drop-shadow(0 1.25rem 1.9rem rgb(0 0 0 / 45%))
+      saturate(0.88) brightness(0.86);
+  }
+
+  .gigi-window {
+    background: radial-gradient(
+      circle at 50% 56%,
+      rgb(255 243 205 / 72%),
+      rgb(255 218 142 / 34%) 42%,
+      transparent 76%
+    );
+  }
+
+  .gigi-window img {
+    filter: brightness(1.35) contrast(1.06) saturate(1.12)
+      drop-shadow(0 0 0.28rem rgb(255 236 190 / 82%));
+  }
+}
+
+@media (max-height: 44rem) {
+  :root {
+    --logo-size: min(clamp(12rem, 58vh, 19rem), 86vw, 35rem);
+    --logo-ground-depth: clamp(4.5rem, 18vh, 7rem);
+    --wordmark-size: clamp(3rem, 11vh, 5rem);
+    --wordmark-overlap: clamp(1rem, 4vh, 2.25rem);
+  }
+}
