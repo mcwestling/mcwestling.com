@@ -28,7 +28,7 @@
         --ink: #17130f;
         --paper: #f7f2e8;
         --horizon: 50vh;
-        --logo-size: clamp(21rem, 30vw, 30rem);
+        --logo-size: min(clamp(21rem, 30vw, 30rem), 86vw, 35rem);
         --logo-ground-depth: clamp(5rem, 10vw, 9rem);
         --logo-top: calc(
           var(--horizon) + var(--logo-ground-depth) - var(--logo-size)
@@ -105,23 +105,113 @@
         margin-left: -0.06em;
       }
 
-      .logo {
+      .logo,
+      .castle-window-fill {
         position: absolute;
         top: var(--logo-top);
         left: 50%;
-        z-index: 2;
-        display: block;
         width: var(--logo-size);
-        max-width: min(86vw, 35rem);
-        height: auto;
         transform: translateX(-50%);
+      }
+
+      .logo {
+        z-index: 3;
+        display: block;
+        height: auto;
         filter: drop-shadow(0 1.25rem 1.7rem rgb(43 35 26 / 24%));
+      }
+
+      .castle-window-fill {
+        z-index: 1;
+        aspect-ratio: 1;
+      }
+
+      .castle-window-fill span {
+        position: absolute;
+        background: #050505;
+        border-radius: 47% 47% 9% 9% / 45% 45% 7% 7%;
+      }
+
+      .gigi-stage {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .gigi-cameo {
+        position: absolute;
+        display: block;
+        user-select: none;
+        -webkit-user-drag: none;
+      }
+
+      .gigi-ground {
+        z-index: 4;
+        width: var(--gigi-width);
+        height: auto;
+        transform-origin: 50% 100%;
+        filter: drop-shadow(0 0.45rem 0.35rem rgb(43 35 26 / 22%));
+      }
+
+      .gigi-window {
+        z-index: 2;
+        background: radial-gradient(
+          circle at 50% 56%,
+          rgb(255 239 200 / 58%),
+          rgb(255 214 135 / 24%) 38%,
+          transparent 72%
+        );
+      }
+
+      .gigi-window img {
+        position: absolute;
+        top: 65%;
+        left: 30%;
+        display: block;
+        width: 160%;
+        max-width: none;
+        height: auto;
+        filter: brightness(1.16) contrast(1.05) saturate(1.08)
+          drop-shadow(0 0 0.22rem rgb(255 232 186 / 68%));
+        transform: translate(-50%, -50%);
+        user-select: none;
+        -webkit-user-drag: none;
+      }
+
+      .gigi-walk-track {
+        z-index: 0;
+        width: var(--gigi-width);
+        animation: gigi-walk var(--gigi-duration) linear infinite;
+        animation-delay: var(--gigi-delay);
+      }
+
+      .gigi-walk-track img {
+        display: block;
+        width: 100%;
+        height: auto;
+        transform: scaleX(var(--gigi-facing));
+        transform-origin: 50% 100%;
+        filter: drop-shadow(0 0.28rem 0.2rem rgb(43 35 26 / 18%));
+        user-select: none;
+        -webkit-user-drag: none;
+      }
+
+      @keyframes gigi-walk {
+        from {
+          transform: translateX(var(--gigi-start));
+        }
+
+        to {
+          transform: translateX(var(--gigi-end));
+        }
       }
 
       .contact {
         position: absolute;
         inset-inline: 0;
         bottom: clamp(1.5rem, 6vh, 3.75rem);
+        z-index: 5;
         display: grid;
         justify-items: center;
         padding-inline: inherit;
@@ -159,7 +249,7 @@
 
       @media (max-width: 42rem) {
         :root {
-          --logo-size: clamp(19rem, 78vw, 28rem);
+          --logo-size: min(clamp(19rem, 78vw, 28rem), 86vw);
           --logo-ground-depth: clamp(3.75rem, 10vw, 6rem);
           --wordmark-overlap: clamp(0.2rem, 1.5vw, 0.6rem);
         }
@@ -181,11 +271,25 @@
           filter: drop-shadow(0 1.25rem 1.9rem rgb(0 0 0 / 45%))
             saturate(0.88) brightness(0.86);
         }
+
+        .gigi-window {
+          background: radial-gradient(
+            circle at 50% 56%,
+            rgb(255 243 205 / 72%),
+            rgb(255 218 142 / 34%) 42%,
+            transparent 76%
+          );
+        }
+
+        .gigi-window img {
+          filter: brightness(1.35) contrast(1.06) saturate(1.12)
+            drop-shadow(0 0 0.28rem rgb(255 236 190 / 82%));
+        }
       }
 
       @media (max-height: 44rem) {
         :root {
-          --logo-size: clamp(12rem, 58vh, 19rem);
+          --logo-size: min(clamp(12rem, 58vh, 19rem), 86vw, 35rem);
           --logo-ground-depth: clamp(4.5rem, 18vh, 7rem);
           --wordmark-size: clamp(3rem, 11vh, 5rem);
           --wordmark-overlap: clamp(1rem, 4vh, 2.25rem);
@@ -204,13 +308,22 @@
             >Westling</span>
           </h1>
         </div>
+        <div class="castle-window-fill" aria-hidden="true">
+          <span style="left: 13.9%; top: 39.7%; width: 4.3%; height: 11.9%;"></span>
+          <span style="left: 13.9%; top: 65%; width: 4.3%; height: 10%;"></span>
+          <span style="left: 43%; top: 42.2%; width: 4.4%; height: 10.3%;"></span>
+          <span style="left: 53.5%; top: 42.2%; width: 4.4%; height: 10.3%;"></span>
+          <span style="left: 82.2%; top: 39.7%; width: 4.3%; height: 11.9%;"></span>
+          <span style="left: 82.2%; top: 65%; width: 4.3%; height: 10%;"></span>
+        </div>
         <img
           class="logo"
-          src="assets/mcwestling-logo.png"
+          src="assets/mcwestling-logo-window-cutouts.png"
           alt="McWestling castle logo"
           width="1024"
           height="1024"
         >
+        <div class="gigi-stage" aria-hidden="true"></div>
       </section>
       <section class="contact" aria-label="Contact links">
         <nav class="links" aria-label="McWestling links">
@@ -219,5 +332,273 @@
         </nav>
       </section>
     </main>
+    <script>
+      (() => {
+        const stage = document.querySelector(".gigi-stage");
+        const logo = document.querySelector(".logo");
+        const contact = document.querySelector(".contact");
+
+        if (!stage || !logo || !contact) {
+          return;
+        }
+
+        const assets = {
+          flop: {
+            src: "assets/gigi/gigi-flop.png",
+            aspect: 383 / 652,
+            minScale: 0.15,
+            maxScale: 0.56,
+            maxWidth: 300,
+          },
+          loaf: {
+            src: "assets/gigi/gigi-loaf.png",
+            aspect: 345 / 490,
+            minScale: 0.14,
+            maxScale: 0.48,
+            maxWidth: 270,
+          },
+          face: {
+            src: "assets/gigi/gigi-face.png",
+          },
+          walk: {
+            src: "assets/gigi/gigi-walk.gif",
+            aspect: 53 / 116,
+          },
+        };
+        const staticVariants = ["flop", "loaf", "face"];
+        const allVariants = [...staticVariants, "walk"];
+        const params = new URLSearchParams(window.location.search);
+        const forced = params.get("gigi");
+
+        if (forced === "none") {
+          return;
+        }
+
+        const randomItem = (items) =>
+          items[Math.floor(Math.random() * items.length)];
+        const clamp = (value, min, max) =>
+          Math.min(Math.max(value, min), max);
+        const lerp = (start, end, amount) =>
+          start + (end - start) * amount;
+        const px = (value) => `${Math.round(value)}px`;
+
+        const windowSlots = [
+          { left: 0.143, top: 0.404, width: 0.036, height: 0.09 },
+          { left: 0.143, top: 0.657, width: 0.036, height: 0.08 },
+          { left: 0.435, top: 0.429, width: 0.037, height: 0.078 },
+          { left: 0.54, top: 0.429, width: 0.037, height: 0.078 },
+          { left: 0.826, top: 0.404, width: 0.036, height: 0.09 },
+          { left: 0.826, top: 0.657, width: 0.036, height: 0.08 },
+        ];
+
+        const forcedVariant = allVariants.includes(forced) ? forced : null;
+        const selected = forcedVariant || randomItem(allVariants);
+
+        const state = {
+          type: selected,
+          x: Math.random(),
+          depth: Math.random(),
+          windowSlot: Math.floor(Math.random() * windowSlots.length),
+          walkDirection: Math.random() < 0.5 ? -1 : 1,
+          walkLayer: Math.random() < 0.5 ? "back" : "front",
+          walkDepth: Math.random(),
+          walkProgress:
+            Math.random() < 0.5
+              ? lerp(0.14, 0.28, Math.random())
+              : lerp(0.72, 0.86, Math.random()),
+        };
+
+        let cameo;
+
+        const placeGroundGigi = () => {
+          const asset = assets[state.type];
+          const logoRect = logo.getBoundingClientRect();
+          const contactRect = contact.getBoundingClientRect();
+          const horizonY = window.innerHeight * 0.5;
+          const groundStart = Math.max(
+            logoRect.bottom - logoRect.height * 0.04,
+            horizonY + 16
+          );
+          const groundEnd = Math.max(
+            groundStart + 48,
+            contactRect.top - 12
+          );
+          const depth = 0.08 + state.depth * 0.92;
+          const anchorY = lerp(groundStart, groundEnd, depth);
+          const perspective = clamp(
+            (anchorY - horizonY) / Math.max(contactRect.top - horizonY, 1),
+            0,
+            1
+          );
+          const nearScale = perspective ** 1.15;
+          const width = clamp(
+            logoRect.width *
+              lerp(asset.minScale, asset.maxScale, nearScale),
+            48,
+            Math.min(asset.maxWidth, window.innerWidth * 0.56)
+          );
+          const height = width * asset.aspect;
+          const wideViewport = clamp(
+            (window.innerWidth - logoRect.width) / logoRect.width,
+            0,
+            2
+          );
+          const horizontalSpan = Math.min(
+            window.innerWidth - width - 16,
+            logoRect.width * lerp(0.6, 2.15, wideViewport / 2)
+          );
+          const minX = window.innerWidth / 2 - horizontalSpan / 2;
+          const maxX = window.innerWidth / 2 + horizontalSpan / 2;
+          const centerX = lerp(minX, maxX, state.x);
+          const left = clamp(
+            centerX - width / 2,
+            8,
+            window.innerWidth - width - 8
+          );
+          const top = clamp(
+            anchorY - height,
+            horizonY + 4,
+            contactRect.top - height - 10
+          );
+
+          cameo.style.setProperty("--gigi-width", px(width));
+          cameo.style.left = px(left);
+          cameo.style.top = px(top);
+        };
+
+        const placeWindowGigi = () => {
+          const slot = windowSlots[state.windowSlot];
+          const logoRect = logo.getBoundingClientRect();
+          const left = logoRect.left + logoRect.width * slot.left;
+          const top = logoRect.top + logoRect.height * slot.top;
+          const width = logoRect.width * slot.width;
+          const height = logoRect.height * slot.height;
+
+          cameo.style.left = px(left);
+          cameo.style.top = px(top);
+          cameo.style.width = px(width);
+          cameo.style.height = px(height);
+        };
+
+        const placeWalkingGigi = () => {
+          const logoRect = logo.getBoundingClientRect();
+          const contactRect = contact.getBoundingClientRect();
+          const horizonY = window.innerHeight * 0.5;
+          const castleDepthLine = logoRect.bottom - logoRect.height * 0.1;
+          const backStart = Math.max(
+            logoRect.bottom - logoRect.height * 0.32,
+            horizonY + 16
+          );
+          const backEnd = castleDepthLine - 8;
+          const frontStart = castleDepthLine + 8;
+          const frontEnd = Math.max(
+            frontStart + 48,
+            contactRect.top - 14
+          );
+          const canWalkBehind = backEnd - backStart >= 24;
+          const isInFront =
+            state.walkLayer === "front" || !canWalkBehind;
+          const anchorY = isInFront
+            ? lerp(frontStart, frontEnd, state.walkDepth)
+            : lerp(backStart, backEnd, state.walkDepth);
+          const perspective = clamp(
+            (anchorY - horizonY) / Math.max(contactRect.top - horizonY, 1),
+            0,
+            1
+          );
+          const width = clamp(
+            logoRect.width * lerp(0.14, 0.28, perspective),
+            64,
+            Math.min(148, window.innerWidth * 0.34)
+          );
+          const height = width * assets.walk.aspect;
+          const top = clamp(
+            anchorY - height,
+            horizonY + 6,
+            contactRect.top - height - 10
+          );
+          const start = state.walkDirection > 0
+            ? -width - 24
+            : window.innerWidth + 24;
+          const end = state.walkDirection > 0
+            ? window.innerWidth + 24
+            : -width - 24;
+
+          cameo.style.setProperty("--gigi-width", px(width));
+          cameo.style.setProperty("--gigi-start", px(start));
+          cameo.style.setProperty("--gigi-end", px(end));
+          cameo.style.setProperty(
+            "--gigi-facing",
+            String(state.walkDirection > 0 ? 1 : -1)
+          );
+          const duration = Math.round(34 + state.walkDepth * 12);
+
+          cameo.style.setProperty("--gigi-duration", `${duration}s`);
+          cameo.style.setProperty(
+            "--gigi-delay",
+            `${-(duration * state.walkProgress).toFixed(2)}s`
+          );
+          cameo.style.top = px(top);
+          cameo.style.left = "0";
+          cameo.style.zIndex = isInFront ? "4" : "0";
+        };
+
+        const positionCameo = () => {
+          if (!cameo) {
+            return;
+          }
+
+          if (state.type === "face") {
+            placeWindowGigi();
+          } else if (state.type === "walk") {
+            placeWalkingGigi();
+          } else {
+            placeGroundGigi();
+          }
+        };
+
+        const schedulePosition = () => {
+          window.requestAnimationFrame(positionCameo);
+        };
+
+        const renderCameo = () => {
+          stage.replaceChildren();
+
+          if (state.type === "face") {
+            cameo = document.createElement("div");
+            cameo.className = "gigi-cameo gigi-window";
+            const image = document.createElement("img");
+            image.src = assets.face.src;
+            image.alt = "";
+            image.decoding = "async";
+            cameo.append(image);
+          } else if (state.type === "walk") {
+            cameo = document.createElement("div");
+            cameo.className = "gigi-cameo gigi-walk-track";
+            const image = document.createElement("img");
+            image.src = assets.walk.src;
+            image.alt = "";
+            image.decoding = "async";
+            cameo.append(image);
+          } else {
+            cameo = document.createElement("img");
+            cameo.className = "gigi-cameo gigi-ground";
+            cameo.src = assets[state.type].src;
+            cameo.alt = "";
+            cameo.decoding = "async";
+          }
+
+          stage.append(cameo);
+          positionCameo();
+          window.addEventListener("resize", schedulePosition);
+        };
+
+        if (logo.complete) {
+          renderCameo();
+        } else {
+          logo.addEventListener("load", renderCameo, { once: true });
+        }
+      })();
+    </script>
   </body>
 </html>
