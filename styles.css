@@ -200,7 +200,7 @@ h1 {
 .gigi-walk-track {
   z-index: 2;
   width: var(--gigi-width);
-  animation: gigi-walk var(--gigi-duration) linear infinite;
+  animation: gigi-walk var(--gigi-duration) linear both;
   animation-delay: var(--gigi-delay);
 }
 

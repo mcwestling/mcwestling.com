@@ -307,6 +307,14 @@ posthog.capture('$pageview', window.__gigiPostHogProperties);
     } else if (state.type === "walk") {
       cameo = document.createElement("div");
       cameo.className = "gigi-cameo gigi-walk-track";
+      cameo.addEventListener("animationend", (event) => {
+        if (event.target !== cameo || event.animationName !== "gigi-walk") {
+          return;
+        }
+
+        cameo.remove();
+        cameo = null;
+      });
       const image = document.createElement("img");
       image.src = assets.walk.src;
       image.alt = "";
