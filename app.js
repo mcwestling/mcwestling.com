@@ -29,10 +29,7 @@
     walkDirection: Math.random() < 0.5 ? -1 : 1,
     walkLayer: Math.random() < 0.5 ? "back" : "front",
     walkDepth: Math.random(),
-    walkProgress:
-      Math.random() < 0.5
-        ? lerp(0.14, 0.28, Math.random())
-        : lerp(0.72, 0.86, Math.random()),
+    walkProgress: 0,
   };
   const iterationId = state.type === "face"
     ? `face:slot-${state.windowSlot}`
@@ -272,7 +269,8 @@ posthog.capture('$pageview', window.__gigiPostHogProperties);
     cameo.style.left = "0";
     const overlapsCastle =
       top < logoRect.bottom && top + height > logoRect.top;
-    cameo.style.zIndex = overlapsCastle ? "2" : "4";
+    const walkBehindCastle = overlapsCastle && !isInFront;
+    cameo.classList.toggle("gigi-walk-behind", walkBehindCastle);
   };
 
   const positionCameo = () => {
@@ -299,25 +297,41 @@ posthog.capture('$pageview', window.__gigiPostHogProperties);
     if (state.type === "face") {
       cameo = document.createElement("div");
       cameo.className = "gigi-cameo gigi-window";
+      const figure = document.createElement("div");
+      figure.className = "gigi-window-figure";
       const image = document.createElement("img");
       image.src = assets.face.src;
       image.alt = "";
       image.decoding = "async";
-      cameo.append(image);
+      figure.append(image);
+      cameo.append(figure);
     } else if (state.type === "walk") {
       cameo = document.createElement("div");
       cameo.className = "gigi-cameo gigi-walk-track";
+      cameo.addEventListener("animationend", (event) => {
+        if (event.target !== cameo || event.animationName !== "gigi-walk") {
+          return;
+        }
+
+        cameo.remove();
+        cameo = null;
+      });
+      const figure = document.createElement("div");
+      figure.className = "gigi-walk-figure";
       const image = document.createElement("img");
       image.src = assets.walk.src;
       image.alt = "";
       image.decoding = "async";
-      cameo.append(image);
+      figure.append(image);
+      cameo.append(figure);
     } else {
-      cameo = document.createElement("img");
+      cameo = document.createElement("div");
       cameo.className = "gigi-cameo gigi-ground";
-      cameo.src = assets[state.type].src;
-      cameo.alt = "";
-      cameo.decoding = "async";
+      const image = document.createElement("img");
+      image.src = assets[state.type].src;
+      image.alt = "";
+      image.decoding = "async";
+      cameo.append(image);
     }
 
     stage.append(cameo);
