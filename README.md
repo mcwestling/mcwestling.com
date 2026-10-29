@@ -19,10 +19,10 @@ The pages are generated locally and committed; nothing builds in CI. To add a pr
 1. Make sure the product's `README.md` opens with `# Name`, a one-line pitch, `## What it does` and `## Who it's for`. Everything after "Who it's for" stays off the site.
 2. Add the product to `products.json`: its `slug`, `repo` (`owner/name`) and `readme` path.
 3. Optionally add `content/<slug>.md` for extras shown below the intro, with images in `assets/products/<slug>/` (link them as `/assets/products/<slug>/...`).
-4. With `gh` logged in to an account that can read the repo, run `ruby scripts/gather-products.rb`.
+4. With `gh` logged in to an account that can read the repo, run `python3 scripts/gather-products.py`.
 5. Commit `products/`.
 
-Tests for the README cut: `ruby scripts/test-gather-products.rb`.
+Tests for the README cut: `python3 scripts/gather-products.test.py`. To preview the site, run `python3 -m http.server 4173`.
 
 ## Links
 
