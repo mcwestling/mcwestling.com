@@ -4,7 +4,7 @@
 
 ## What it does
 
-A single static page at [mcwestling.com](https://mcwestling.com) that shows the McWestling castle logo, a contact email and a link to our GitHub, with a small animated surprise on each visit. It's plain HTML, CSS and JavaScript, published with GitHub Pages.
+It stands at the castle gate. [mcwestling.com](https://mcwestling.com) is one page: a logo, a way to send word, and a pointer to the workshop. Visitors who linger may get company. It's plain HTML, CSS and JavaScript, served by GitHub Pages, because a castle needs no moat of dependencies.
 
 ## Who it's for
 
