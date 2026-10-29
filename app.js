@@ -1,4 +1,8 @@
 (() => {
+  if (!document.querySelector(".gigi-stage")) {
+    return;
+  }
+
   const allVariants = ["flop", "loaf", "face", "walk"];
   const params = new URLSearchParams(window.location.search);
   const forced = params.get("gigi");
@@ -74,13 +78,10 @@ posthog.init('phc_qxQXK6XSDxqaFjsVHpA8CKUuHQbku69fwNsBMeLQ4xBH', {
   capture_pageview: false,
   capture_pageleave: true,
   disable_session_recording: true,
-  autocapture: {
-    dom_event_allowlist: ['click'],
-    element_allowlist: ['a'],
-  },
 });
-posthog.register_for_session(window.__gigiPostHogProperties);
-posthog.capture('$pageview', window.__gigiPostHogProperties);
+const pageviewProperties = window.__gigiPostHogProperties || {};
+posthog.register_for_session(pageviewProperties);
+posthog.capture('$pageview', pageviewProperties);
 
 (() => {
   const stage = document.querySelector(".gigi-stage");
